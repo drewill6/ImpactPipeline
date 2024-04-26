@@ -1,0 +1,50 @@
+﻿@page "/careers"
+@inject IJobService JobService
+@using DataImpact.Interfaces;
+@using DataImpact.Models
+@using System.Globalization 
+
+<h3>Careers</h3>
+
+<div class="careers-container">
+    <div class="careers-item">
+        <img src="images/careers.jpg" alt="Careers" />
+        <p>
+            Careers <br />
+            We’re striving to solve the unsolvable, and to achieve that we need top talent and outside-the-box thinkers. No matter your passion, there are careers in our business made just for you.
+        </p>
+    </div>
+
+    <div class="careers-item">
+        <img src="imagees/career_search.jpg" alt="Career Search" />
+        <p>
+            Career Search <br />
+            Impact Pipeline Services has endless possibilities, and we’re hiring talented individuals all over the world. Find your prefered location and your specialty by searching our online database.
+        </p>
+    </div>
+
+    <div class="careers-item">
+        <img src="images/diversity_and_inclusion.jpg" alt="Diversity and Inclusion" />
+
+        <p>
+            Diversity and Inclusion<br />
+            We strive to maintain a truly diverse workforce at Oceaneering. From recent college graduates to transitioning military veterans, we pair talented job seekers with rewarding positions.
+        </p>
+
+    </div>
+
+</div>
+
+
+@code {
+    private List<JobOpportunity> jobList;
+
+    [Parameter] public int JobId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        //Retrieve job opportunities for the CareersPage
+        jobList = await JobService.GetJobOpportunitiesAsync();
+    }
+
+}

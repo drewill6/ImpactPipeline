@@ -1,0 +1,73 @@
+﻿@page "/industry"
+
+@using DataImpact.Models
+
+<h3>Industry</h3>
+
+<div class = "industry-container">
+    <div class = "industry-item">
+        <img src= "images/material_handling.jpg" alt="Material Handling" />
+        <p>
+            Material Handling <br/>
+            Delivering and servicing innovative materials handling and logistics solutions for an array of unique markets-from automotive to healthcare.
+        </p>
+    </div>
+
+    <div class="industry-item">
+        <img src="imagees/oil_and_gas.jpg" alt="Oil and Gas" />
+        <p>
+            Oil and Gas <br />
+            Solving and supporting survey, installation, and maintenance challenges for offshore wind farms around the world.
+        </p>
+    </div>
+
+    <div class="industry-item">
+        <img src="images/science_and_research.jpg" alt="Science and Research" />
+        
+        <p>
+            Science and Research<br />
+            Solving specific technical and operational challenges through collaboration and the application of world-class technologies and experience.
+        </p>
+
+    </div>
+</div>
+
+
+    @foreach (var industry in industryList)
+{
+    <div class="industry-item">
+        <h4>@industry.Name</h4>
+        <p>@industry.Description</p>
+    </div>
+}
+
+    @code {
+    // Simulated list of industries (replace with actual data retrieval)
+    private List<Industry> industryList = new List<Industry>
+    {
+        new Industry
+        {
+            Name = "Material Handling",
+            Description = "Delivering and servicing innovative materials handling and logistics solutions for an array of unique markets—from automotive to healthcare."
+        },
+        new Industry
+        {
+            Name = "Oil and Gas",
+            Description = "Deploying integrated solutions across the oil and gas lifecycle to provide greater value, reduce total cost of ownership, and minimize risk on a global scale."
+        },
+        new Industry
+        {
+            Name = "Renewable Energy",
+            Description = "Solving and supporting survey, installation, and maintenance challenges for offshore wind farms around the world."
+        },
+        // Add more industries here
+    };
+
+    // Define the Industry model (replace with your actual model)
+    private class Industry
+    {
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+    }
+
+}

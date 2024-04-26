@@ -1,0 +1,95 @@
+﻿@page "/personalinfo"
+@using DataImpact.Interfaces;
+@using DataImpact.Models;
+@using DataImpact;
+@inject IUserService UserService
+
+<h3>Personal Information Form</h3>
+
+<EditForm Model="@personalInfo" OnInvalidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <label>Name:</label>
+    <InputText @bind-value="personalInfo.Name" /><br />
+
+    <label>Address:</label>
+    <InputText @bind-value="personalInfo.Address" /><br />
+
+    <label>City:</label>
+    <InputText @bind-value="personalInfo.City" /><br />
+
+    <label>State:</label>
+    <InputText @bind-value="personalInfo.State" /><br />
+
+    <label>PostalCode:</label>
+    <InputText @bind-value="personalInfo.PostalCode" /><br />
+
+    <label>Country:</label>
+    <InputText @bind-value="personalInfo.Country" /><br />
+
+    <label>Phone:</label>
+    <InputText @bind-value="personalInfo.Phone" /><br />
+
+    <label>Email:</label>
+    <InputText @bind-value="personalInfo.Email" /><br />
+
+    <div class="form-group">
+        <label for="resume">Resume (PDF or Word Document):</label>
+        <InputFile class="form-conrol-file" id="resume" @OnChange="HandleFileUpload" />
+    </div>
+
+    <button type="submit">SUBMIT</button>
+
+</EditForm>
+
+
+
+@code {
+    private PersonalInfoModel personalInfo = new PersonalInfoModel();
+    private IBrowserFile? uploadedFile;
+
+    private async Task HandleFileUpload(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        // Check if a file was selected
+        if (file != null)
+        {
+            // Set the uploadedFile property
+            uploadedFile = file;
+
+            // Optional, I can display the file name to the user
+            // personalInfo.ResumeFileName = file.Name;
+
+            //Read the dile data as a byte array
+            var buffer = new byte[file.Size];
+            await file.OpenReadStream().ReadAsync(buffer);
+        }
+    }
+
+    private async Task HandleValidSubmit()
+    {
+        // Check if  a file was uploaded
+        if (uploadedFile != null)
+        {
+            //Generate a unique file name to avoid overwriting existing files
+            var fileName = Guid.NewGuid().ToString() + Path.GetExtension(uploadedFile.Name);
+            // Specify the path where you want to save the file
+            var filePath = Path.Combine("wwwroot/uploads", fileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await uploadedFile.OpenReadStream().CopyToAsync(fileStream);
+            }
+
+            // Now 'filePath' contains the path to the saved file on the server's disk
+            // I can possibly store 'filePath' in the database if I need to reference the file later.
+        }
+        // Call the service to save the personal information
+        await UserService.SavePersonalInfoAsync(personalInfo);
+
+        // Optional, but redirect to a success page or perform other actions after submission.
+    }
+
+}

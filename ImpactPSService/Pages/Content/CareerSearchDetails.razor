@@ -1,0 +1,60 @@
+﻿@page "/careersearchdetails/{jobId:int}"
+@inject IJobService JobService // Inject a job service to retrieve job details.
+@using DataImpact.Interfaces
+@using DataImpact.Models
+@using System.Globalization;
+
+<h3>CareerSearchDetails</h3>
+
+@if (job != null)
+    {
+        <h4>@job.JobTitle</h4>
+        <p>@job.JobDescription</p>
+        <p><strong>Category:</strong> @job.Category</p>
+        <p><strong>Location:</strong> @job.Location</p>
+        <p><strong>Employment Type:</strong> @job.EmploymentType</p>
+        <p><strong>Experience Level:</strong> @job.ExperienceLevel</p>
+        <p><strong>Salary:</strong> @job.Salary</p>
+        <p><strong>Application Deadline:</strong> @job.ApplicationDeadline.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)</p>
+        <p><strong>Responsibilities:</strong></p>
+        <ul>
+            @foreach (var responsibility in job.Responsibilities)
+            {
+                <li>@responsibility</li>
+            }
+        </ul>
+        <p><strong>Qualifications:</strong></p>
+        <ul>
+            @foreach (var qualification in job.Qualifications)
+            {
+                <li>@qualification</li>
+            }
+        </ul>
+        <p><strong>Benefits:</strong></p>
+        <ul>
+            @foreach (var benefit in job.Benefits)
+            {
+                <li>@benefit</li>
+            }
+        </ul>
+        <p><strong>Equal Opportunity Employer:</strong> @job.EqualOpportunityEmployer</p>
+        <p><strong>Company Info:</strong> @job.CompanyInfo</p>
+        <p><strong>Posted Date:</strong> @job.PostedDate.ToString("MMMM dd, yyyy", CultureInfo.InvariantCulture)</p>
+        <a href="@job.ApplicationLink" target="_blank">Apply Now</a>
+    }
+    else
+    {
+        <p>Job not found.</p>
+    }
+
+@code {
+    private JobOpportunity job;
+
+    [Parameter] public int JobId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Retrieve job details based on the JobId parameter
+        job = await JobService.GetJobByIdAsync(JobId);
+    }
+}

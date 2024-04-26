@@ -1,0 +1,78 @@
+﻿
+<div class="top-row ps-3 navbar navbar-expand-lg bg-primary navbar-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">ImpactPSService</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="home" Match="NavLinkMatch.All">
+                        <span class="oi oi-home" aria-hidden="true"></span> Home
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="careers" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <span class="oi oi-briefcase" aria-hidden="true"></span> Careers
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Add career related links here -->
+                        <li>
+                            <a class="dropdown-item" href="engineers">Engineers</a>
+                        </li>
+                        <!-- Add more career related links if needed -->
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="industry" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span> Industry
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Add primary industry related links here -->
+                        <li><a class="dropdown-item" href="industry">Industry</a></li>
+                        <!-- Add more industry related links here if needed-->
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="products services" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <span class="oi oi-wrench" aria-hidden="true"></span> Products Services
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Add services and products related links here -->
+                        <li><a class="dropdown-item" href="products services">Products Services</a></li>
+                        <!-- Add more products and services related links here if needed -->
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="solutions" role="button" data-toggle="dropdown" aria-expanded="false">
+                        <span class="oi oi-list-rich" aria-hidden="true"></span> Solutions
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- Add solutions related links here -->
+                        <li><a class="nav-link" href="solutions"> Solutions</a></li>
+                        <!-- Add more solutions related links here if needed -->
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        
+    </nav>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

@@ -1,0 +1,14 @@
+C:\Code\ImpactPSService\DataImpact\bin\Debug\net6.0\DataImpact.deps.json
+C:\Code\ImpactPSService\DataImpact\bin\Debug\net6.0\DataImpact.runtimeconfig.json
+C:\Code\ImpactPSService\DataImpact\bin\Debug\net6.0\DataImpact.dll
+C:\Code\ImpactPSService\DataImpact\bin\Debug\net6.0\DataImpact.pdb
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.csproj.AssemblyReference.cache
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.GeneratedMSBuildEditorConfig.editorconfig
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.AssemblyInfoInputs.cache
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.AssemblyInfo.cs
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.csproj.CoreCompileInputs.cache
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.dll
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\refint\DataImpact.dll
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.pdb
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\DataImpact.genruntimeconfig.cache
+C:\Code\ImpactPSService\DataImpact\obj\Debug\net6.0\ref\DataImpact.dll

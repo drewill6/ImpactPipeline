@@ -1,0 +1,73 @@
+﻿@page "/solutions"
+
+@using DataImpact.Models
+
+<h3>Solutions</h3>
+
+<div class="solutions-container">
+    <div class="solutions-item">
+        <img src="images/pipeline_repair.jpg" alt="Pipeline Repair" />
+        <p>
+            Pipeline Repair<br />
+            Deploying rapid and safe pipeline solutions that minimize environmental impact and restore production quickly.
+        </p>
+    </div>
+
+    <div class="solutions-item">
+        <img src="imagees/well_intervention.jpg" alt="Well Intervention" />
+        <p>
+            Well Intervention <br />
+            Ensuring reliable well access through unmatched industry expertise and an innovative technology portfolio.
+        </p>
+    </div>
+
+    <div class="solutions-item">
+        <img src="images/dredging_and_cutting.jpg" alt="Dredging and Cutting" />
+
+        <p>
+            Dredging and Cutting<br />
+            We provide flexible, adaptable dredging solutions for both ROV and diver operations. Coupled with multiple mechanical or abrasive cutting solutions, we design the most effective solution for you.
+        </p>
+
+    </div>
+</div>
+
+<!-- Replace the following with actual solution data -->
+@foreach (var solution in solutionList)
+{
+    <div class="solution-item">
+        <h4>@solution.Name</h4>
+        <p>@solution.Description</p>
+    </div>
+}
+
+@code {
+    // Simulated list of solutions (replace with actual data retrieval)
+    private List<Solution> solutionList = new List<Solution>
+    {
+        new Solution
+        {
+            Name = "Rig Services",
+            Description = "Providing services and solutions for offshore drilling rigs."
+        },
+        new Solution
+        {
+            Name = "Well Intervention",
+            Description = "Intervening in oil and gas wells for maintenance and enhancement."
+        },
+        new Solution
+        {
+            Name = "Pipeline Repair",
+            Description = "Repairing and maintaining pipelines for safe and efficient transportation."
+        },
+        // Add more solutions here
+    };
+
+    // Define the Solution model (replace with your actual model)
+    private class Solution
+    {
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+    }
+
+}

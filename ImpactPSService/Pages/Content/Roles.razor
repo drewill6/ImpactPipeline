@@ -1,0 +1,61 @@
+﻿@page "/roles"
+@using DataImpact.Interfaces;
+@using DataImpact.Models;
+@inject IUserService UserService
+@inject IJSRuntime JSRuntime
+
+<h3>Roles</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Role Name</th>
+            <th>Description</th>
+            <!-- Add more role fields here as needed -->
+        </tr>
+    </thead>
+    <tbody>
+        @if (roles == null)
+        {
+            <tr>
+                <td colspan="2">Loading...</td>
+            </tr>
+        }
+        else if (roles.Count == 0)
+        {
+            <tr>
+                <td colspan="2">No roles found.</td>
+            </tr>
+        }
+        else
+        {
+            @foreach (var role in roles)
+            {
+                <tr>
+                    <td>@role.RoleName</td>
+                    <td>@role.Description</td>
+                    <!-- Add more role fields here as needed -->
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    private List<Role>? roles;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            // Retrieve roles from the backend service
+            roles = await UserService.GetRolesAsync();
+        }
+        catch (Exception ex)
+        {
+            // Handle errors gracefully
+            Console.WriteLine(ex.Message);
+            await JSRuntime.InvokeVoidAsync("alert", "Error occurred while fetching roles.");
+        }
+    }
+}

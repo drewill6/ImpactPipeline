@@ -1,0 +1,73 @@
+﻿@page "/productsservices"
+
+@using DataImpact.Models
+
+<h3>ProductsServices</h3>
+
+<div class="productsservices-container">
+    <div class="productsservices-item">
+        <img src="images/material_handling.jpg" alt="Material Handling" />
+        <p>
+            Intervention Tooling <br />
+            We solve drill support, completions and installation, production enhancement, and decommissioning challenges—from routine to extreme.
+        </p>
+    </div>
+
+    <div class="productsservices-item">
+        <img src="imagees/oil_and_gas.jpg" alt="Oil and Gas" />
+        <p>
+            ROV Tooling <br />
+            We offer more than 4,000 ROV tools for rental to meet your specific needs. In addition to our rental business, we also maintain and service a pool of customer-owned tools.
+        </p>
+    </div>
+
+    <div class="productsservices-item">
+        <img src="images/science_and_research.jpg" alt="Science and Research" />
+
+        <p>
+            ROV Cutting Transport System (RCTS)<br />
+            Efficiently remove cutting debris during drilling operations with the versatile RCTS. This integrated solution provides superior cutting removal performance, and requires fewer crew members and less deck space.
+        </p>
+
+    </div>
+</div>
+
+<!-- Replace the following with actual product and service data -->
+@foreach (var productService in productServiceList)
+{
+    <div class="product-service-item">
+        <h4>@productService.Name</h4>
+        <p>@productService.Description</p>
+    </div>
+}
+
+@code {
+    // Simulated list of products and services (replace with actual data retrieval)
+    private List<ProductService> productServiceList = new List<ProductService>
+    {
+        new ProductService
+        {
+            Name = "Data Management",
+            Description = "Managing and analyzing data to support decision-making and operations."
+        },
+        new ProductService
+        {
+            Name = "Diving",
+            Description = "Underwater diving services for various applications."
+        },
+        new ProductService
+        {
+            Name = "Flow Assurance",
+            Description = "Ensuring the integrity and reliability of fluid transport systems."
+        },
+        // Add more products and services here
+    };
+
+    // Define the ProductService model (replace with actual model)
+    private class ProductService
+    {
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+    }
+
+}
